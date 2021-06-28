@@ -108,9 +108,18 @@ function Header() {
 
                     </NavMenu>
 
-                    <UserImg 
-                        onClick={signOut}
-                        src='https://media-exp1.licdn.com/dms/image/C5603AQGrIIkRfyUQ3g/profile-displayphoto-shrink_200_200/0/1614501934953?e=1629331200&v=beta&t=_pA8qPCv3wOrzeC6Nj2M2d-f_5KDzlAlNsgItMWgGH8' />
+                    
+
+                    <SignOut   >
+                        <UserImg src={userPhoto} alt={userName} />
+                        <DropDown onClick={signOut} >
+                            <span>Signout</span>
+                            
+                        </DropDown>
+                       
+                    </SignOut>
+
+                    
 
               </ >
           }
@@ -133,7 +142,6 @@ const Nav = styled.nav`
 `
 const Logo = styled.img`
     width: 80px;  
-
 `
 
 const NavMenu = styled.div`
@@ -142,22 +150,18 @@ const NavMenu = styled.div`
     flex : 1;
     margin-left: 20px;
     align-items: center;
-
     a{
         display:flex;
         align-items:center;
         padding: 0 12px;
         cursor: pointer;
-
         img{
             height: 20px;
         }
-
         span{
             font-size: 13px;
             letter-spacing: 1.42px;
             position: relative;
-
             &:after{
                 content: " ";
                 height: 2px;
@@ -167,14 +171,12 @@ const NavMenu = styled.div`
                 left: 0;
                 right: 0;
                 bottom: -6px;
-
                 opacity: 0;
                 transition:  all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
                 transform-origin: left center;
                 transform: scaleX(0);
             }
         }
-
         &: hover{
             span: after{
                 transform : scaleX(1);
@@ -182,15 +184,53 @@ const NavMenu = styled.div`
             }
         }
     }
-
 `
 
-const UserImg = styled.img`
-    height: 48px;
-    width: 48px;
-    border-radius: 50%;
-    cursor: pointer;
+// const UserImg = styled.img`
+//     height: 48px;
+//     width: 48px;
+//     border-radius: 50%;
+//     cursor: pointer;
+// `
 
+const UserImg = styled.img`
+  height: 100%;
+`;
+
+const DropDown = styled.div`
+  position: absolute;
+  top: 48px;
+  right: 0px;
+  background: rgb(19, 19, 19);
+  border: 1px solid rgba(151, 151, 151, 0.34);
+  border-radius: 4px;
+  box-shadow: rgb(0 0 0 / 50%) 0px 0px 18px 0px;
+  padding: 10px;
+  font-size: 14px;
+  letter-spacing: 3px;
+  width: 100px;
+  opacity: 0;
+`;
+
+const SignOut = styled.div`
+  position: relative;
+  height: 48px;
+  width: 48px;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  ${UserImg} {
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+  }
+  &:hover {
+    ${DropDown} {
+      opacity: 1;
+      transition-duration: 1s;
+    }
+  }
 `
 
 const Login = styled.div`
@@ -202,14 +242,11 @@ const Login = styled.div`
     background-color: rgba(0,0,0, 0.6);
     transition: all 0.2s ease 0s;
     cursor: pointer;
-
     &:hover{
         background-color: #f9f9f9;
         color : #000;
         border-color: transparent;
     }
-
-
 `
 
 const LoginContainer = styled.div`
